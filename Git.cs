@@ -26,13 +26,10 @@ namespace BranchFilter
 
         public static string[] ChangedFiles(this Repository repo, string sourceBranch)
         {
-            var head = repo.Head;
             var origin = repo.Branches[sourceBranch];
-            var changes = repo.Diff.Compare<TreeChanges>(origin.Commits.First().Tree, head.Commits.First().Tree);
-            var status = repo.RetrieveStatus();
-            return status
-                .Select(a => a.FilePath)
-                .Concat(changes.Select(a => a.Path))
+            var changes = repo.Diff.Compare<TreeChanges>(origin.Commits.First().Tree, DiffTargets.WorkingDirectory);
+            return changes
+                .Select(a => a.Path)
                 .Select(a => (repo.Info.WorkingDirectory + a).Replace("/", "\\"))
                 .ToArray();
         }

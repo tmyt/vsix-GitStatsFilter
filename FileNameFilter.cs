@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -65,18 +64,18 @@ namespace BranchFilter
                     root.HierarchyIdentity.NestedHierarchy,
                     CancellationToken);
                 if (_repo == null) return sourceItems;
-                var current = string.IsNullOrEmpty(Config.TargetBranch) ? _repo.Head.FriendlyName : Config.TargetBranch;
-                if (current == "(no branch)") return sourceItems;
+                var target = string.IsNullOrEmpty(Config.TargetBranch) ? _repo.Head.FriendlyName : Config.TargetBranch;
+                if (target == "(no branch)") return sourceItems;
                 return await _hierarchyCollectionProvider.GetFilteredHierarchyItemsAsync(
                     sourceItems,
-                    ShouldIncludeInFilter(_repo.ChangedFiles(current)),
+                    ShouldIncludeInFilter(_repo.ChangedFiles(target)),
                     CancellationToken);
             }
 
             // Returns true if filters hierarchy item name for given filter; otherwise, false</returns>
             private Predicate<IVsHierarchyItem> ShouldIncludeInFilter(string[] changes)
             {
-                return item => changes.Any(x => item.CanonicalName.StartsWith(x, true, CultureInfo.InstalledUICulture));
+                return item => changes.Contains(item.CanonicalName, new IgnoreCaseComparator());
             }
 
             protected override void DisposeNativeResources()
