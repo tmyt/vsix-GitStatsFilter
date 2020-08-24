@@ -9,34 +9,30 @@ namespace BranchFilter
 
         public static void Load(string rootDir)
         {
-            var config = Path.Combine(rootDir, ".branch.json");
-            var text = ReadString(config);
+            var text = ReadString(ConfigPath(rootDir));
             var context = text == null ? new Context() : JsonConvert.DeserializeObject<Context>(text);
             TargetBranch = context.TargetBranch;
         }
 
         public static void Save(string rootDir)
         {
-            var config = Path.Combine(rootDir, ".branch.json");
             var context = new Context
             {
                 TargetBranch = TargetBranch,
             };
             var text = JsonConvert.SerializeObject(context);
-            using (var writer = new StreamWriter(config))
-            {
-                writer.Write(text);
-            }
+            using var writer = new StreamWriter(ConfigPath(rootDir));
+            writer.Write(text);
         }
+
+        private static string ConfigPath(string rootDir) => Path.Combine(rootDir, ".branch.json");
 
         private static string ReadString(string filename)
         {
             try
             {
-                using (var reader = new StreamReader(filename))
-                {
-                    return reader.ReadToEnd();
-                }
+                using var reader = new StreamReader(filename);
+                return reader.ReadToEnd();
             }
             catch
             {

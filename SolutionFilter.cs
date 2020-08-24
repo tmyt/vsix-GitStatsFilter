@@ -53,32 +53,30 @@ namespace BranchFilter
             if (string.IsNullOrEmpty(dte.Solution.FullName)) return;
             var solutionDir = Path.GetDirectoryName(dte.Solution.FullName);
             Config.Load(solutionDir);
-            using (var repo = Git.OpenNearestRepository(solutionDir))
+            using var repo = Git.OpenNearestRepository(solutionDir);
+            var menu = new DynamicMenu();
+            if (repo == null)
             {
-                var menu = new DynamicMenu();
-                if (repo == null)
+                menu.Items.Add(new MenuItem
                 {
-                    menu.Items.Add(new MenuItem
-                    {
-                        Header = "有効なGitリポジトリが見つかりません",
-                        IsEnabled = false,
-                    });
-                }
-                else
-                {
-                    var tree = BranchTree.From(repo.Branches.Select(a => a.FriendlyName));
-                    var current = string.IsNullOrEmpty(Config.TargetBranch)
-                        ? repo.Head.FriendlyName
-                        : Config.TargetBranch;
-                    menu.Items.AddRange(tree.ToMenuItems(current));
-                }
-                menu.BranchSelected += (o, s) =>
-                {
-                    Config.TargetBranch = (string)((MenuItem)o).Tag;
-                    Config.Save(solutionDir);
-                };
-                menu.Show();
+                    Header = "有効なGitリポジトリが見つかりません",
+                    IsEnabled = false,
+                });
             }
+            else
+            {
+                var tree = BranchTree.From(repo.Branches.Select(a => a.FriendlyName));
+                var current = string.IsNullOrEmpty(Config.TargetBranch)
+                    ? repo.Head.FriendlyName
+                    : Config.TargetBranch;
+                menu.Items.AddRange(tree.ToMenuItems(current));
+            }
+            menu.BranchSelected += (o, s) =>
+            {
+                Config.TargetBranch = (string)((MenuItem)o).Tag;
+                Config.Save(solutionDir);
+            };
+            menu.Show();
         }
 
         /// <summary>
@@ -93,7 +91,7 @@ namespace BranchFilter
         /// <summary>
         /// Gets the service provider from the owner package.
         /// </summary>
-        private Microsoft.VisualStudio.Shell.IAsyncServiceProvider ServiceProvider => this._package;
+        private IAsyncServiceProvider ServiceProvider => this._package;
 
         /// <summary>
         /// Initializes the singleton instance of the command.
