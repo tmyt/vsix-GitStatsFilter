@@ -75,6 +75,9 @@
     <PackageReference Include="LibGit2Sharp">
       <Version>0.26.2</Version>
     </PackageReference>
+    <PackageReference Include="LibGit2Sharp.NativeBinaries" GeneratePathProperty="true">
+      <Version>2.0.306</Version>
+    </PackageReference>
     <PackageReference Include="Microsoft.VisualStudio.SDK" Version="16.0.205" ExcludeAssets="runtime" />
     <PackageReference Include="Microsoft.VSSDK.BuildTools" Version="16.6.2058" />
     <PackageReference Include="Newtonsoft.Json">
@@ -87,23 +90,31 @@
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="lib\win32\x64\git2-106a5f2.dll">
+    <Content Include="$(PkgLibGit2Sharp_NativeBinaries)\runtimes\win-x64\native\git2-106a5f2.dll">
+      <Link>lib\win32\x64\git2-106a5f2.dll</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="lib\win32\x64\git2-106a5f2.pdb">
+    <Content Include="$(PkgLibGit2Sharp_NativeBinaries)\runtimes\win-x64\native\git2-106a5f2.pdb">
+      <Link>lib\win32\x64\git2-106a5f2.pdb</Link>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="lib\win32\x86\git2-106a5f2.dll">
+    <Content Include="$(PkgLibGit2Sharp_NativeBinaries)\runtimes\win-x86\native\git2-106a5f2.dll">
+      <Link>lib\win32\x86\git2-106a5f2.dll</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="lib\win32\x86\git2-106a5f2.pdb">
+    <Content Include="$(PkgLibGit2Sharp_NativeBinaries)\runtimes\win-x86\native\git2-106a5f2.pdb">
+      <Link>lib\win32\x86\git2-106a5f2.pdb</Link>
       <IncludeInVSIX>true</IncludeInVSIX>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\SolutionFilter.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="lib\win32\x64\" />
+    <Folder Include="lib\win32\x86\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\VSSDK\Microsoft.VsSDK.targets" Condition="'$(VSToolsPath)' != ''" />
