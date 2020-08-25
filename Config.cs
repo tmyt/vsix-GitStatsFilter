@@ -21,11 +21,10 @@ namespace BranchFilter
                 TargetBranch = TargetBranch,
             };
             var text = JsonConvert.SerializeObject(context);
-            using var writer = new StreamWriter(ConfigPath(rootDir));
-            writer.Write(text);
+            WriteString(ConfigPath(rootDir), text);
         }
 
-        private static string ConfigPath(string rootDir) => Path.Combine(rootDir, ".branch.json");
+        private static string ConfigPath(string rootDir) => Path.Combine(rootDir, ".vs", ".branch.json");
 
         private static string ReadString(string filename)
         {
@@ -38,6 +37,20 @@ namespace BranchFilter
             {
                 return null;
             }
+        }
+
+        private static void WriteString(string filename, string value)
+        {
+            try
+            {
+                Directory.CreateDirectory(Path.GetDirectoryName(filename));
+            }
+            catch(IOException)
+            {
+                return;
+            }
+            using var writer = new StreamWriter(filename);
+            writer.Write(value);
         }
 
         class Context
