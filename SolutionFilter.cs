@@ -53,7 +53,7 @@ namespace BranchFilter
             if (string.IsNullOrEmpty(dte.Solution.FullName)) return;
             var solutionDir = Path.GetDirectoryName(dte.Solution.FullName);
             Config.Load(solutionDir);
-            using var repo = Git.OpenNearestRepository(solutionDir);
+            using var repo = Git.OpenRepository(solutionDir);
             var menu = new DynamicMenu();
             if (repo == null)
             {

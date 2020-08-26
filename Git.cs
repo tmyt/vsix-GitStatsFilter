@@ -6,20 +6,27 @@ namespace BranchFilter
 {
     static class Git
     {
-        public static Repository OpenNearestRepository(string dir)
+        public static Repository TryOpenRepository(string repoDir)
+        {
+            try
+            {
+                return new Repository(repoDir);
+            }
+            catch (RepositoryNotFoundException)
+            {
+                return null;
+            }
+        }
+
+        public static Repository OpenRepository(string dir)
         {
             while (dir != null)
             {
                 if (dir.EndsWith("\\")) dir = Path.GetDirectoryName(dir);
                 if (dir == null) break;
-                try
-                {
-                    return new Repository(dir);
-                }
-                catch (RepositoryNotFoundException)
-                {
-                    dir = Path.GetDirectoryName(dir);
-                }
+                var repo = TryOpenRepository(dir);
+                if (repo != null) return repo;
+                dir = Path.GetDirectoryName(dir);
             }
             return null;
         }

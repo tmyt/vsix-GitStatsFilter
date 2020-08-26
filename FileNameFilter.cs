@@ -51,7 +51,7 @@ namespace BranchFilter
                 var dte = (DTE)serviceProvider.GetService(typeof(DTE));
                 var solutionDir = Path.GetDirectoryName(dte.Solution.FullName);
                 Config.Load(solutionDir);
-                _repo = Git.OpenNearestRepository(solutionDir);
+                _repo = Git.OpenRepository(solutionDir);
             }
 
             // Gets the items to be included from this filter provider.
