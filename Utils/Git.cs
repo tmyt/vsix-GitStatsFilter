@@ -2,11 +2,11 @@
 using System.Linq;
 using LibGit2Sharp;
 
-namespace BranchFilter
+namespace GitStatFilter.Utils
 {
-    static class Git
+    internal static class Git
     {
-        public static Repository TryOpenRepository(string repoDir)
+        public static Repository? TryOpenRepository(string repoDir)
         {
             try
             {
@@ -18,7 +18,7 @@ namespace BranchFilter
             }
         }
 
-        public static Repository OpenRepository(string dir)
+        public static Repository? OpenRepository(string? dir)
         {
             while (dir != null)
             {
@@ -31,8 +31,11 @@ namespace BranchFilter
             return null;
         }
 
-        public static string[] ChangedFiles(this Repository repo, string sourceBranch)
+        public static string[]? ChangedFiles(this Repository repo, string sourceBranch)
         {
+            // check `(no branch)`
+            if (sourceBranch == "(no branch)") return null;
+            // compare with sourceBranch
             var origin = repo.Branches[sourceBranch];
             var changes = repo.Diff.Compare<TreeChanges>(origin.Commits.First().Tree, DiffTargets.WorkingDirectory);
             return changes

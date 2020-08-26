@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
+using GitStatFilter.Extensions;
 
-namespace BranchFilter
+namespace GitStatFilter.Utils
 {
     public class BranchTree
     {
@@ -11,7 +12,7 @@ namespace BranchFilter
 
         public IEnumerable<string> Keys => _children.Keys;
         public bool IsLeaf => _children.Count == 0;
-        public string CanonicalName { get; private set; }
+        public string CanonicalName { get; private set; } = "";
         public BranchTree this[string name] => _children[name];
 
         public void Add(string s)
@@ -71,17 +72,6 @@ namespace BranchFilter
                 root.Add(b);
             }
             return root;
-        }
-    }
-
-    static class ItemCollectionExtension
-    {
-        public static void AddRange(this ItemCollection target, params MenuItem[] items)
-        {
-            foreach (var i in items)
-            {
-                target.Add(i);
-            }
         }
     }
 }

@@ -1,26 +1,21 @@
 ﻿using System.IO;
 using Newtonsoft.Json;
 
-namespace BranchFilter
+namespace GitStatFilter
 {
-    static class Config
+    class Config
     {
-        public static string TargetBranch { get; set; }
+        public string? TargetBranch { get; set; }
 
-        public static void Load(string rootDir)
+        public static Config Load(string rootDir)
         {
             var text = ReadString(ConfigPath(rootDir));
-            var context = text == null ? new Context() : JsonConvert.DeserializeObject<Context>(text);
-            TargetBranch = context.TargetBranch;
+            return text == null ? new Config() : JsonConvert.DeserializeObject<Config>(text);
         }
 
-        public static void Save(string rootDir)
+        public void Save(string rootDir)
         {
-            var context = new Context
-            {
-                TargetBranch = TargetBranch,
-            };
-            var text = JsonConvert.SerializeObject(context);
+            var text = JsonConvert.SerializeObject(this);
             WriteString(ConfigPath(rootDir), text);
         }
 
@@ -51,11 +46,6 @@ namespace BranchFilter
             }
             using var writer = new StreamWriter(filename);
             writer.Write(value);
-        }
-
-        class Context
-        {
-            public string TargetBranch { get; set; }
         }
     }
 }

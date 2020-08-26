@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Threading;
+using GitStatFilter.Commands;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
-namespace BranchFilter
+namespace GitStatFilter
 {
     /// <summary>
     /// This is the class that implements the package exposed by this assembly.
@@ -24,15 +25,10 @@ namespace BranchFilter
     /// </para>
     /// </remarks>
     [PackageRegistration(UseManagedResourcesOnly = false, AllowsBackgroundLoading = true)]
-    [Guid(BranchFilterPackage.PackageGuidString)]
+    [Guid(PackageConsts.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    public sealed class BranchFilterPackage : AsyncPackage
+    public sealed class GitStatFilterPackage : AsyncPackage
     {
-        /// <summary>
-        /// BranchFilterPackage GUID string.
-        /// </summary>
-        public const string PackageGuidString = "5d00e368-00a1-4c6c-8165-837abba71fb3";
-
         #region Package Members
 
         /// <summary>
@@ -46,8 +42,8 @@ namespace BranchFilter
         {
             // When initialized asynchronously, the current thread may be a background thread at this point.
             // Do any initialization that requires the UI thread after switching to the UI thread.
-            await this.JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
-            await SolutionFilter.InitializeAsync(this);
+            await JoinableTaskFactory.SwitchToMainThreadAsync(cancellationToken);
+            await ChooseBranchCommand.InitializeAsync(this);
         }
 
         #endregion

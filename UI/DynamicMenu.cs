@@ -2,15 +2,17 @@
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BranchFilter
+namespace GitStatFilter.UI
 {
     public class DynamicMenu
     {
         private readonly ContextMenu _menu;
-        private Window _control;
+        private Window? _control;
+
+        public delegate void MenuClickEventHandler(MenuItem sender, RoutedEventArgs e);
 
         public ItemCollection Items => _menu.Items;
-        public event EventHandler<RoutedEventArgs> BranchSelected;
+        public event MenuClickEventHandler? ItemClick;
 
         public DynamicMenu()
         {
@@ -33,7 +35,7 @@ namespace BranchFilter
 
         private void _menu_Click(object sender, RoutedEventArgs e)
         {
-            BranchSelected?.Invoke(e.Source, e);
+            ItemClick?.Invoke((MenuItem)e.Source, e);
         }
 
         private Window CreateHost()
@@ -52,7 +54,7 @@ namespace BranchFilter
 
         private void Cleanup()
         {
-            _control.Close();
+            _control?.Close();
         }
     }
 }
