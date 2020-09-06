@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.Shell;
 namespace GitStatsFilter.Filters
 {
     // Implements ISolutionTreeFilterProvider. The SolutionTreeFilterProvider attribute declares it as a MEF component
-    [SolutionTreeFilterProvider(PackageConsts.CommandSetGuidString, PackageConsts.FilterCommandId)]
+    [SolutionTreeFilterProvider(PackageGuids.guidFileFilterCommandString, PackageIds.ApplyFilterCommandID)]
     public sealed partial class GitStatsFilterProvider : HierarchyTreeFilterProvider
     {
         private readonly SVsServiceProvider _serviceProvider;

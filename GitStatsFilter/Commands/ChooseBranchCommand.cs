@@ -34,7 +34,7 @@ namespace GitStatsFilter.Commands
             _package = package ?? throw new ArgumentNullException(nameof(package));
             commandService = commandService ?? throw new ArgumentNullException(nameof(commandService));
 
-            var menuCommandId = new CommandID(PackageConsts.CommandSetGuid, PackageConsts.ChooseBranchCommandId);
+            var menuCommandId = new CommandID(PackageGuids.guidFileFilterCommand, PackageIds.SelectBaseBranchCommandId);
             var menuItem = new MenuCommand(ChooseSourceBranch, menuCommandId);
             commandService.AddCommand(menuItem);
         }
