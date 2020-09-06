@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitStatsFilter", "GitStatsFilter.csproj", "{EBC7629D-3625-40E5-82A2-33CF54B85642}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GitStatsFilter", "GitStatsFilter\GitStatsFilter.csproj", "{EBC7629D-3625-40E5-82A2-33CF54B85642}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
