@@ -48,7 +48,7 @@ namespace GitStatFilter.Commands
             menu.Items.AddRange(GenerateMenuItems(solutionDir));
             menu.ItemClick += (o, s) =>
             {
-                var config = new Config {TargetBranch = (string)o.Tag};
+                var config = new Config { TargetBranch = (string)o.Tag };
                 config.Save(solutionDir);
             };
             menu.Show();
@@ -57,10 +57,10 @@ namespace GitStatFilter.Commands
         private MenuItem[] GenerateMenuItems(string solutionDir)
         {
             using var repo = Git.OpenRepository(solutionDir);
-            if (repo == null) return MakeError("有効なGitリポジトリが見つかりません");
+            if (repo == null) return MakeError(Resources.Strings.could_not_find_valid_git_repository);
             var config = Config.Load(solutionDir);
             var current = StringEx.OrDefault(config.TargetBranch, repo.Head.FriendlyName);
-            if (current == null) return MakeError("有効なGitリポジトリが見つかりません");
+            if (current == null) return MakeError(Resources.Strings.could_not_find_valid_git_repository);
             var tree = BranchTree.From(repo.Branches.Select(a => a.FriendlyName));
             return tree.ToMenuItems(current);
         }

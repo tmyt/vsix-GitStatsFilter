@@ -21,7 +21,7 @@ namespace GitStatFilter
 
         private static string ConfigPath(string rootDir) => Path.Combine(rootDir, ".vs", ".branch.json");
 
-        private static string ReadString(string filename)
+        private static string? ReadString(string filename)
         {
             try
             {
@@ -40,7 +40,7 @@ namespace GitStatFilter
             {
                 Directory.CreateDirectory(Path.GetDirectoryName(filename));
             }
-            catch(IOException)
+            catch (IOException)
             {
                 return;
             }

@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h"/>
+  <Extern href="vsshlids.h"/>
+
+  <Commands package="guidBranchFilterPackage">
+    <Buttons>
+      <Button guid="guidFileFilterCommand" id="RunFilterId" priority="0x0100" type="Button">
+        <Parent guid="guidSHLMainMenu" id="IDG_VS_TOOLBAR_PROJWIN_FILTERS" />
+        <Icon guid="guidImages" id="bmpPic1" />
+        <Strings>
+          <ButtonText>変更されたファイルのみ表示</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidFileFilterCommand" id="SelectSourceBranchId" priority="0x0100" type="Button">
+        <Parent guid="guidSharedMenuGroup" id="IDG_VS_PROJ_TOOLBAR2" />
+        <Icon guid="guidImages" id="bmpPic2" />
+        <Strings>
+          <ButtonText>比較元ブランチを選択</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+    <Bitmaps>
+      <Bitmap guid="guidImages" href="SolutionFilter.png" usedList="bmpPic1, bmpPic2"/>
+    </Bitmaps>
+  </Commands>
+
+  <Symbols>
+    <GuidSymbol name="guidBranchFilterPackage" value="{5d00e368-00a1-4c6c-8165-837abba71fb3}" />
+
+    <GuidSymbol name="guidFileFilterCommand" value="{5448d968-2036-4a64-8f30-d2cb9f61d759}">
+      <IDSymbol name="RunFilterId" value="0x0100" />
+      <IDSymbol name="SelectSourceBranchId" value="0x0101"/>
+    </GuidSymbol>
+
+    <GuidSymbol name="guidImages" value="{30dabb9d-dc22-412f-b7cd-4f4b77a93021}" >
+      <IDSymbol name="bmpPic1" value="1" />
+      <IDSymbol name="bmpPic2" value="2" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>

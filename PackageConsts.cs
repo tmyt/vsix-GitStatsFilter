@@ -11,6 +11,5 @@ namespace GitStatFilter
 
         public const int FilterCommandId = 0x0100;
         public const int ChooseBranchCommandId = 0x0101;
-
     }
 }
