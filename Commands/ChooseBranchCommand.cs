@@ -4,13 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Windows.Controls;
 using EnvDTE;
-using GitStatFilter.Extensions;
-using GitStatFilter.UI;
-using GitStatFilter.Utils;
+using GitStatsFilter.Extensions;
+using GitStatsFilter.UI;
+using GitStatsFilter.Utils;
 using Microsoft.VisualStudio.Shell;
 using Task = System.Threading.Tasks.Task;
 
-namespace GitStatFilter.Commands
+namespace GitStatsFilter.Commands
 {
     /// <summary>
     /// Command handler
@@ -57,10 +57,10 @@ namespace GitStatFilter.Commands
         private MenuItem[] GenerateMenuItems(string solutionDir)
         {
             using var repo = Git.OpenRepository(solutionDir);
-            if (repo == null) return MakeError(Resources.Strings.could_not_find_valid_git_repository);
+            if (repo == null) return MakeError(GitStatFilter.Resources.Strings.could_not_find_valid_git_repository);
             var config = Config.Load(solutionDir);
             var current = StringEx.OrDefault(config.TargetBranch, repo.Head.FriendlyName);
-            if (current == null) return MakeError(Resources.Strings.could_not_find_valid_git_repository);
+            if (current == null) return MakeError(GitStatFilter.Resources.Strings.could_not_find_valid_git_repository);
             var tree = BranchTree.From(repo.Branches.Select(a => a.FriendlyName));
             return tree.ToMenuItems(current);
         }
@@ -76,7 +76,7 @@ namespace GitStatFilter.Commands
         /// <summary>
         /// Gets the instance of the command.
         /// </summary>
-        public static ChooseBranchCommand Instance { get; private set; }
+        public static ChooseBranchCommand? Instance { get; private set; }
 
         /// <summary>
         /// Initializes the singleton instance of the command.

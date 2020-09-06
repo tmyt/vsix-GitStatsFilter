@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
-using GitStatFilter.Extensions;
+using GitStatsFilter.Extensions;
 
-namespace GitStatFilter.Utils
+namespace GitStatsFilter.Utils
 {
     public class BranchTree
     {

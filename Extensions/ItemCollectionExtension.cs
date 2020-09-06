@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace GitStatFilter.Extensions
+namespace GitStatsFilter.Extensions
 {
     static class ItemCollectionExtension
     {

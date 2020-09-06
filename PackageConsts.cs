@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace GitStatFilter
+namespace GitStatsFilter
 {
     internal static class PackageConsts
     {

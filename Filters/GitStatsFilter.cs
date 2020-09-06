@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using EnvDTE;
-using GitStatFilter.Utils;
+using GitStatsFilter.Utils;
 using Microsoft.Internal.VisualStudio.PlatformUI;
 using Microsoft.VisualStudio.Shell;
 
-namespace GitStatFilter.Filters
+namespace GitStatsFilter.Filters
 {
     public sealed partial class GitStatFilterProvider
     {

@@ -2,7 +2,7 @@
 using System.Linq;
 using LibGit2Sharp;
 
-namespace GitStatFilter.Utils
+namespace GitStatsFilter.Utils
 {
     internal static class Git
     {

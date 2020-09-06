@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="6977cd51-8ebe-4e2b-b462-397b2e0bf27e" Version="0.9.3" Language="en-US" Publisher="Yutaka TSUMORI" />
+        <Identity Id="6977cd51-8ebe-4e2b-b462-397b2e0bf27e" Version="0.9.4" Language="en-US" Publisher="Yutaka TSUMORI" />
         <DisplayName>GitStatsFilter</DisplayName>
         <Description xml:space="preserve">Solution Explorer filter with Git diff stats</Description>
         <MoreInfo>https://github.com/tmyt/vsix-GitStatsFilter</MoreInfo>

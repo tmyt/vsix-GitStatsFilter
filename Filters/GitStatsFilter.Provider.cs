@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.Composition;
 using Microsoft.VisualStudio.Shell;
 
-namespace GitStatFilter.Filters
+namespace GitStatsFilter.Filters
 {
     // Implements ISolutionTreeFilterProvider. The SolutionTreeFilterProvider attribute declares it as a MEF component
     [SolutionTreeFilterProvider(PackageConsts.CommandSetGuidString, PackageConsts.FilterCommandId)]
@@ -21,7 +21,7 @@ namespace GitStatFilter.Filters
         // Returns an instance of Create filter class.
         protected override HierarchyTreeFilter CreateFilter()
         {
-            return new GitStatFilter(_serviceProvider, _hierarchyCollectionProvider);
+            return new GitStatFilterProvider.GitStatFilter(_serviceProvider, _hierarchyCollectionProvider);
         }
     }
 }

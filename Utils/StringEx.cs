@@ -1,4 +1,4 @@
-﻿namespace GitStatFilter.Utils
+﻿namespace GitStatsFilter.Utils
 {
     internal class StringEx
     {
