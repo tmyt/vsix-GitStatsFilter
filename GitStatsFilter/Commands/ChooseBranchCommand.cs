@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows.Controls;
 using EnvDTE;
 using GitStatsFilter.Extensions;
+using GitStatsFilter.Resources;
 using GitStatsFilter.UI;
 using GitStatsFilter.Utils;
 using Microsoft.VisualStudio.Shell;
@@ -57,10 +58,10 @@ namespace GitStatsFilter.Commands
         private MenuItem[] GenerateMenuItems(string solutionDir)
         {
             using var repo = Git.OpenRepository(solutionDir);
-            if (repo == null) return MakeError(GitStatFilter.Resources.Strings.could_not_find_valid_git_repository);
+            if (repo == null) return MakeError(Strings.could_not_find_valid_git_repository);
             var config = Config.Load(solutionDir);
             var current = StringEx.OrDefault(config.TargetBranch, repo.Head.FriendlyName);
-            if (current == null) return MakeError(GitStatFilter.Resources.Strings.could_not_find_valid_git_repository);
+            if (current == null) return MakeError(Strings.could_not_find_valid_git_repository);
             var tree = BranchTree.From(repo.Branches.Select(a => a.FriendlyName));
             return tree.ToMenuItems(current);
         }

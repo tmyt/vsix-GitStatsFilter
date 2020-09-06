@@ -10,15 +10,15 @@ using Microsoft.VisualStudio.Shell;
 
 namespace GitStatsFilter.Filters
 {
-    public sealed partial class GitStatFilterProvider
+    public sealed partial class GitStatsFilterProvider
     {
         // Implementation of file filtering
-        private sealed class GitStatFilter : HierarchyTreeFilter
+        private sealed class GitStatsFilter : HierarchyTreeFilter
         {
             private readonly IServiceProvider _serviceProvider;
             private readonly IVsHierarchyItemCollectionProvider _hierarchyCollectionProvider;
 
-            public GitStatFilter(
+            public GitStatsFilter(
                 IServiceProvider serviceProvider,
                 IVsHierarchyItemCollectionProvider hierarchyCollectionProvider)
             {

@@ -27,7 +27,7 @@ namespace GitStatsFilter
     [PackageRegistration(UseManagedResourcesOnly = false, AllowsBackgroundLoading = true)]
     [Guid(PackageConsts.PackageGuidString)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
-    public sealed class GitStatFilterPackage : AsyncPackage
+    public sealed class GitStatsFilterPackage : AsyncPackage
     {
         #region Package Members
 

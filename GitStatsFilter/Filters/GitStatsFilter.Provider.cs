@@ -5,14 +5,14 @@ namespace GitStatsFilter.Filters
 {
     // Implements ISolutionTreeFilterProvider. The SolutionTreeFilterProvider attribute declares it as a MEF component
     [SolutionTreeFilterProvider(PackageConsts.CommandSetGuidString, PackageConsts.FilterCommandId)]
-    public sealed partial class GitStatFilterProvider : HierarchyTreeFilterProvider
+    public sealed partial class GitStatsFilterProvider : HierarchyTreeFilterProvider
     {
         private readonly SVsServiceProvider _serviceProvider;
         private readonly IVsHierarchyItemCollectionProvider _hierarchyCollectionProvider;
 
         // Constructor required for MEF composition
         [ImportingConstructor]
-        public GitStatFilterProvider(SVsServiceProvider serviceProvider, IVsHierarchyItemCollectionProvider hierarchyCollectionProvider)
+        public GitStatsFilterProvider(SVsServiceProvider serviceProvider, IVsHierarchyItemCollectionProvider hierarchyCollectionProvider)
         {
             _serviceProvider = serviceProvider;
             _hierarchyCollectionProvider = hierarchyCollectionProvider;
@@ -21,7 +21,7 @@ namespace GitStatsFilter.Filters
         // Returns an instance of Create filter class.
         protected override HierarchyTreeFilter CreateFilter()
         {
-            return new GitStatFilterProvider.GitStatFilter(_serviceProvider, _hierarchyCollectionProvider);
+            return new GitStatsFilterProvider.GitStatsFilter(_serviceProvider, _hierarchyCollectionProvider);
         }
     }
 }
