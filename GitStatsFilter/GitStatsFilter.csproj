@@ -63,11 +63,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Strings.resx</DependentUpon>
     </Compile>
-    <Compile Include="source.extension.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>source.extension.resx</DependentUpon>
-    </Compile>
     <Compile Include="Utils\BranchTree.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="UI\DynamicMenu.cs" />
@@ -140,34 +135,25 @@
       <SubType>Designer</SubType>
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+      <LogicalName>Strings.resources</LogicalName>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.en-US.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>Strings.en-US.resources</LogicalName>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Strings.ja-JP.resx">
+      <MergeWithCTO>true</MergeWithCTO>
+      <LogicalName>Strings.ja-JP.resources</LogicalName>
       <DependentUpon>Strings.resx</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="source.extension.ja-JP.resx">
-      <MergeWithCTO>true</MergeWithCTO>
-      <LogicalName>VSPackage.ja-JP.resources</LogicalName>
-      <DependentUpon>source.extension.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="source.extension.en-US.resx">
-      <MergeWithCTO>true</MergeWithCTO>
-      <LogicalName>VSPackage.en-US.resources</LogicalName>
-      <DependentUpon>source.extension.resx</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="source.extension.resx">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>source.extension.vsixmanifest</DependentUpon>
-      <MergeWithCTO>true</MergeWithCTO>
-      <ManifestResourceName>VSPackage</ManifestResourceName>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
+    <None Include="Menus.vsct">
+      <SubType>Designer</SubType>
+      <Generator>VsctGenerator</Generator>
+      <LastGenOutput>Menus.cs</LastGenOutput>
+    </None>
     <VSCTCompile Include="Menus.en-US.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <DependentUpon>Menus.vsct</DependentUpon>
@@ -175,11 +161,6 @@
     <VSCTCompile Include="Menus.ja-JP.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
       <DependentUpon>Menus.vsct</DependentUpon>
-    </VSCTCompile>
-    <VSCTCompile Include="Menus.vsct">
-      <SubType>Designer</SubType>
-      <Generator>VsctGenerator</Generator>
-      <LastGenOutput>Menus.cs</LastGenOutput>
     </VSCTCompile>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

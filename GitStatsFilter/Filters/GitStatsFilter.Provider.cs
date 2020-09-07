@@ -21,7 +21,7 @@ namespace GitStatsFilter.Filters
         // Returns an instance of Create filter class.
         protected override HierarchyTreeFilter CreateFilter()
         {
-            return new GitStatsFilterProvider.GitStatsFilter(_serviceProvider, _hierarchyCollectionProvider);
+            return new GitStatsFilter(_serviceProvider, _hierarchyCollectionProvider);
         }
     }
 }
